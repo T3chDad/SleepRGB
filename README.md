@@ -11,6 +11,8 @@ For Example:
 
 You can change the desired effects in the app settings (double-click tray/notification area icon). The effects you specify must already be installed and configured with signalRGB itself. You need to ensure the effect names specified here must match the names in the signalRGB interface. Spaces are supported.
 
+![signalRGB-Sleep_YZWH80D1fB](https://github.com/user-attachments/assets/46b88585-52ae-45bc-a0c5-a8ffe38c64cb)
+
 ************************************************************************************************
 Use this program at your own risk. I'm not responsible for anything that happens on your system.
 ************************************************************************************************
