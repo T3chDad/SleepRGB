@@ -43,8 +43,8 @@ namespace signalRGB_Sleep
             }
             else
             {
-                //  [----           Coming back from Idle Timeout                ----]    [----  Coming back from Lock   ----]
-                if ((IdleTime < Global.MAX_IDLE && Global.LAST_IDLE > Global.MAX_IDLE) || (!Global.IS_LOCKED && Global.IS_OFF))
+                //  [----                   Coming back from Idle Timeout                         ----]    [----                 Coming back from Lock                  ----]
+                if ((IdleTime < Global.MAX_IDLE && Global.IS_OFF && Global.LAST_IDLE > Global.MAX_IDLE) || (IdleTime < Global.MAX_IDLE && !Global.IS_LOCKED && Global.IS_OFF))
                 {
                     // Turn the lights on
                     WindowsCmdCommand.Run("start signalrgb://effect/apply/" + Uri.EscapeDataString(tb_OnEffect.Text) + "?-silentlaunch-", out string output, out string error);
