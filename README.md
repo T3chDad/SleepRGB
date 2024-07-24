@@ -13,7 +13,7 @@ You can change the desired effects in the app settings (double-click tray/notifi
 
 ![SignalRGB-Sleep_g3PxN62RAC](https://github.com/user-attachments/assets/8b7f993e-8d1c-4d18-8b4f-02db645692bb)
 
-If you enjoy this project or I have helped you...feel free to [buy me a coffee](https://www.buymeacoffee.com/hVmOfsXjX1).
+If you enjoy this project or I have helped you...please feel free to [buy me a coffee](https://www.buymeacoffee.com/hVmOfsXjX1).
 ************************************************************************************************
 Use this program at your own risk. I'm not responsible for anything that happens on your system.
 ************************************************************************************************
