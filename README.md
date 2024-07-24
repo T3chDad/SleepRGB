@@ -7,6 +7,7 @@ This app is essentially a proof of concept and should not be considered a produc
 
 For Example: 
 --The default "OFF" effect is "Solid Color" with the settings of Black and 0 brightness.
+
 --The default "ON" effect is "Screen Ambience". 
 
 You can change them in the app settings (double-click tray/notification area icon).  You need to ensure the effect names specified here must match the names in the signalRGB interface. Spaces are supported.
