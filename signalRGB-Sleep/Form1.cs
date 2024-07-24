@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Security.Policy;
 using Microsoft.Win32;
+using BlueMystic;
 
 internal struct LASTINPUTINFO
 {
@@ -18,6 +19,7 @@ namespace signalRGB_Sleep
         public Form1()
         {
             InitializeComponent();
+            _ = new DarkModeCS(this);
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;  // Subscribe to the SessionSwitch event
         }
 
