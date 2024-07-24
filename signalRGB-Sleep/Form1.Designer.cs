@@ -1,4 +1,6 @@
-﻿namespace signalRGB_Sleep
+﻿using Microsoft.Win32;
+
+namespace signalRGB_Sleep
 {
     partial class Form1
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();

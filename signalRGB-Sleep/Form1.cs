@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Security.Policy;
+using Microsoft.Win32;
 
 internal struct LASTINPUTINFO
 {
@@ -17,6 +18,7 @@ namespace signalRGB_Sleep
         public Form1()
         {
             InitializeComponent();
+            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;  // Subscribe to the SessionSwitch event
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -28,8 +30,10 @@ namespace signalRGB_Sleep
             // Seconds since last activity
             uint IdleTime = IdleTimeFinder.GetIdleTime() / 1000;
             // Over the threshold, turn off the lights
-            if (IdleTime > Global.MAX_IDLE && !Global.IS_OFF)
+            //  [----     Triggered by Idle Timeout      ----]    [----    Triggered by Lock     ----]
+            if ((IdleTime > Global.MAX_IDLE && !Global.IS_OFF) || (Global.IS_LOCKED && !Global.IS_OFF))
             {
+
                 // Save the current Idle Time
                 Global.LAST_IDLE = IdleTime;
                 // Turn lights off
@@ -38,8 +42,9 @@ namespace signalRGB_Sleep
                 Global.IS_OFF = true;
             }
             else
-            {   
-                if (IdleTime < Global.MAX_IDLE && Global.LAST_IDLE > Global.MAX_IDLE)
+            {
+                //  [----           Coming back from Idle Timeout                ----]    [----  Coming back from Lock   ----]
+                if ((IdleTime < Global.MAX_IDLE && Global.LAST_IDLE > Global.MAX_IDLE) || (!Global.IS_LOCKED && Global.IS_OFF))
                 {
                     // Turn the lights on
                     WindowsCmdCommand.Run("start signalrgb://effect/apply/" + Uri.EscapeDataString(tb_OnEffect.Text) + "?-silentlaunch-", out string output, out string error);
@@ -47,6 +52,7 @@ namespace signalRGB_Sleep
                     Global.LAST_IDLE = 0;
                     // Save light state
                     Global.IS_OFF = false;
+                    Global.IS_LOCKED = false;
                 }
             }
             // Refresh the label with the curent seconds idle
@@ -95,12 +101,24 @@ namespace signalRGB_Sleep
             tb_OffEffect.Text = Properties.Settings.Default.OFF_Effect.ToString();
             tb_OnEffect.Text = Properties.Settings.Default.ON_Effect.ToString();
             tb_Timeout.Text = Properties.Settings.Default.Timeout.ToString();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             // User hit the "Exit" button on the window, REALLY exit the appliation now.
             Application.Exit();
+        }
+        static void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            if (e.Reason == SessionSwitchReason.SessionLock)
+            {
+                Global.IS_LOCKED = true;
+            }
+            if (e.Reason == SessionSwitchReason.SessionUnlock)
+            {
+                Global.IS_LOCKED = false;
+            }
         }
     }
 
@@ -146,6 +164,7 @@ public static class Global
     public static uint MAX_IDLE = 0;
     public static uint LAST_IDLE = 0;
     public static bool IS_OFF = false;
+    public static bool IS_LOCKED = false;
 }
 public static class WindowsCmdCommand
 {
@@ -170,4 +189,75 @@ public static class WindowsCmdCommand
         output = process.StandardOutput.ReadToEnd();
         error = process.StandardError.ReadToEnd();
     }
+}
+
+public static class NativeMethods
+{
+    // Used to check if the screen saver is running
+    [DllImport("user32.dll", CharSet = CharSet.Auto)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool SystemParametersInfo(uint uAction, uint uParam, ref bool lpvParam, int fWinIni);
+
+    // Used to check if the workstation is locked
+    [DllImport("user32", SetLastError = true)]
+    private static extern IntPtr OpenDesktop(string lpszDesktop, uint dwFlags, bool fInherit, uint dwDesiredAccess);
+
+    [DllImport("user32", SetLastError = true)]
+    private static extern IntPtr OpenInputDesktop(uint dwFlags, bool fInherit, uint dwDesiredAccess);
+
+    [DllImport("user32", SetLastError = true)]
+    private static extern IntPtr CloseDesktop(IntPtr hDesktop);
+
+    [DllImport("user32", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool SwitchDesktop(IntPtr hDesktop);
+
+    // Check if the workstation has been locked.
+    public static bool IsWorkstationLocked()
+    {
+        const int DESKTOP_SWITCHDESKTOP = 256;
+        IntPtr hwnd = OpenInputDesktop(0, false, DESKTOP_SWITCHDESKTOP);
+        if (hwnd == IntPtr.Zero)
+        {
+            // Could not get the input desktop, might be locked already?
+            hwnd = OpenDesktop("Default", 0, false, DESKTOP_SWITCHDESKTOP);
+        }
+
+        // Can we switch the desktop?
+        if (hwnd != IntPtr.Zero)
+        {
+            if (SwitchDesktop(hwnd))
+            {
+                // Workstation is NOT LOCKED.
+                CloseDesktop(hwnd);
+            }
+            else
+            {
+                CloseDesktop(hwnd);
+                // Workstation is LOCKED.
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Check if the screensaver is busy running.
+    public static bool IsScreensaverRunning()
+    {
+        const int SPI_GETSCREENSAVERRUNNING = 114;
+        bool isRunning = false;
+        if (!SystemParametersInfo(SPI_GETSCREENSAVERRUNNING, 0, ref isRunning, 0))
+        {
+            // Could not detect screen saver status...
+            return false;
+        }
+        if (isRunning)
+        {
+            // Screen saver is ON.
+            return true;
+        }
+        // Screen saver is OFF.
+        return false;
+    }
+
 }

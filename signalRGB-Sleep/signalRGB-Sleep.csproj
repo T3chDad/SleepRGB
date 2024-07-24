@@ -9,6 +9,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ApplicationIcon>sleep.ico</ApplicationIcon>
+    <Title>signalRGB-Sleep</Title>
+    <Company>T3chDad.com</Company>
+    <Authors>T3chDad® - Bob Templeton</Authors>
+    <Description>This utility will turn off signalRGB lighting when the system locks, screensaver activates, or monitor turns-off.</Description>
+    <PackageProjectUrl>https://github.com/T3chDad/signalRGB-Sleep</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
