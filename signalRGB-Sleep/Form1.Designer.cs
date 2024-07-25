@@ -40,22 +40,24 @@ namespace signalRGB_Sleep
             tb_OnEffect = new TextBox();
             tb_Timeout = new TextBox();
             label3 = new Label();
-            button1 = new Button();
+            bt_Quit = new Button();
             label4 = new Label();
             pictureBox1 = new PictureBox();
             label5 = new Label();
             label6 = new Label();
+            cb_Startup = new CheckBox();
+            bt_Minimize = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(184, 15);
+            label1.Location = new Point(189, 15);
             label1.Name = "label1";
-            label1.Size = new Size(87, 20);
+            label1.Size = new Size(91, 20);
             label1.TabIndex = 0;
-            label1.Text = "\"Off\" Effect:";
+            label1.Text = "Sleep Effect:";
             // 
             // timer1
             // 
@@ -66,11 +68,11 @@ namespace signalRGB_Sleep
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(184, 57);
+            label2.Location = new Point(189, 65);
             label2.Name = "label2";
-            label2.Size = new Size(85, 20);
+            label2.Size = new Size(90, 20);
             label2.TabIndex = 1;
-            label2.Text = "\"On\" Effect:";
+            label2.Text = "Wake Effect:";
             // 
             // notifyIcon1
             // 
@@ -83,7 +85,7 @@ namespace signalRGB_Sleep
             // 
             // tb_OffEffect
             // 
-            tb_OffEffect.Location = new Point(277, 12);
+            tb_OffEffect.Location = new Point(282, 12);
             tb_OffEffect.Name = "tb_OffEffect";
             tb_OffEffect.Size = new Size(181, 27);
             tb_OffEffect.TabIndex = 2;
@@ -91,7 +93,7 @@ namespace signalRGB_Sleep
             // 
             // tb_OnEffect
             // 
-            tb_OnEffect.Location = new Point(277, 54);
+            tb_OnEffect.Location = new Point(282, 62);
             tb_OnEffect.Name = "tb_OnEffect";
             tb_OnEffect.Size = new Size(181, 27);
             tb_OnEffect.TabIndex = 3;
@@ -99,7 +101,7 @@ namespace signalRGB_Sleep
             // 
             // tb_Timeout
             // 
-            tb_Timeout.Location = new Point(371, 96);
+            tb_Timeout.Location = new Point(376, 112);
             tb_Timeout.Name = "tb_Timeout";
             tb_Timeout.Size = new Size(87, 27);
             tb_Timeout.TabIndex = 5;
@@ -108,30 +110,31 @@ namespace signalRGB_Sleep
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(184, 99);
+            label3.Location = new Point(189, 115);
             label3.Name = "label3";
             label3.Size = new Size(181, 20);
             label3.TabIndex = 4;
             label3.Text = "Screen Timeout (Minutes):";
             // 
-            // button1
+            // bt_Quit
             // 
-            button1.Location = new Point(187, 147);
-            button1.Name = "button1";
-            button1.Size = new Size(104, 29);
-            button1.TabIndex = 6;
-            button1.Text = "Exit";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            bt_Quit.Location = new Point(189, 169);
+            bt_Quit.Name = "bt_Quit";
+            bt_Quit.Size = new Size(124, 29);
+            bt_Quit.TabIndex = 6;
+            bt_Quit.Text = "Quit Program";
+            bt_Quit.UseVisualStyleBackColor = true;
+            bt_Quit.Click += bt_Quit_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(330, 151);
+            label4.Location = new Point(121, -11);
             label4.Name = "label4";
             label4.Size = new Size(50, 20);
             label4.TabIndex = 7;
             label4.Text = "label4";
+            label4.Visible = false;
             // 
             // pictureBox1
             // 
@@ -162,16 +165,40 @@ namespace signalRGB_Sleep
             label6.TabIndex = 10;
             label6.Text = "v0.1";
             // 
+            // cb_Startup
+            // 
+            cb_Startup.AutoSize = true;
+            cb_Startup.Location = new Point(12, 172);
+            cb_Startup.Name = "cb_Startup";
+            cb_Startup.Size = new Size(159, 24);
+            cb_Startup.TabIndex = 11;
+            cb_Startup.Text = "Start with Windows";
+            cb_Startup.UseVisualStyleBackColor = true;
+            cb_Startup.CheckedChanged += cb_Startup_CheckedChanged;
+            // 
+            // bt_Minimize
+            // 
+            bt_Minimize.Location = new Point(319, 169);
+            bt_Minimize.Name = "bt_Minimize";
+            bt_Minimize.Size = new Size(144, 29);
+            bt_Minimize.TabIndex = 12;
+            bt_Minimize.Text = "Minimize to Tray";
+            bt_Minimize.UseVisualStyleBackColor = true;
+            bt_Minimize.Click += bt_Minimize_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(475, 190);
+            ClientSize = new Size(476, 212);
+            ControlBox = false;
+            Controls.Add(bt_Minimize);
+            Controls.Add(cb_Startup);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(pictureBox1);
             Controls.Add(label4);
-            Controls.Add(button1);
+            Controls.Add(bt_Quit);
             Controls.Add(tb_Timeout);
             Controls.Add(label3);
             Controls.Add(tb_OnEffect);
@@ -205,10 +232,12 @@ namespace signalRGB_Sleep
         private TextBox tb_OnEffect;
         private TextBox tb_Timeout;
         private Label label3;
-        private Button button1;
+        private Button bt_Quit;
         private Label label4;
         private PictureBox pictureBox1;
         private Label label5;
         private Label label6;
+        private CheckBox cb_Startup;
+        private Button bt_Minimize;
     }
 }

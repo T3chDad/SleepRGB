@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Security.Policy;
 using Microsoft.Win32;
 using BlueMystic;
+using IWshRuntimeLibrary;
 
 internal struct LASTINPUTINFO
 {
@@ -19,7 +20,7 @@ namespace signalRGB_Sleep
         public Form1()
         {
             InitializeComponent();
-            _ = new DarkModeCS(this);
+            _ = new DarkModeCS(this);  // Dark mode theming
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;  // Subscribe to the SessionSwitch event
         }
 
@@ -91,6 +92,7 @@ namespace signalRGB_Sleep
             Properties.Settings.Default.OFF_Effect = tb_OffEffect.Text;
             Properties.Settings.Default.ON_Effect = tb_OnEffect.Text;
             Properties.Settings.Default.Timeout = int.Parse(tb_Timeout.Text);
+            Properties.Settings.Default.Startup = cb_Startup.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -103,10 +105,10 @@ namespace signalRGB_Sleep
             tb_OffEffect.Text = Properties.Settings.Default.OFF_Effect.ToString();
             tb_OnEffect.Text = Properties.Settings.Default.ON_Effect.ToString();
             tb_Timeout.Text = Properties.Settings.Default.Timeout.ToString();
-
+            cb_Startup.Checked = Properties.Settings.Default.Startup;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bt_Quit_Click(object sender, EventArgs e)
         {
             // User hit the "Exit" button on the window, REALLY exit the appliation now.
             Application.Exit();
@@ -122,10 +124,48 @@ namespace signalRGB_Sleep
                 Global.IS_LOCKED = false;
             }
         }
+
+        private void bt_Minimize_Click(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = true;
+            this.Hide();
+        }
+
+        private void cb_Startup_CheckedChanged(object sender, EventArgs e)
+        {
+            string Shortcut_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SignalRGB-Sleep.lnk";
+            // if not checked, remove the startup shortcut
+            if (!cb_Startup.Checked)
+            {
+                if(System.IO.File.Exists(Shortcut_Path))
+                {
+                    System.IO.File.Delete(Shortcut_Path);                    
+                }
+            }
+            // if checked, create the startup shortcut
+            else 
+            {
+                if (!System.IO.File.Exists(Shortcut_Path))
+                {
+                    string Startup_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SignalRGB-Sleep.lnk";
+                    WshShell shell = new WshShell();
+                    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Startup_Path);
+                    shortcut.Description = "SignalRGB-Sleep";
+                    shortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + @"\SignalRGB-Sleep.exe";
+                    shortcut.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    shortcut.Save();
+                }
+            }
+        }
     }
-
 }
-
+public static class Global
+{
+    public static uint MAX_IDLE = 0;
+    public static uint LAST_IDLE = 0;
+    public static bool IS_OFF = false;
+    public static bool IS_LOCKED = false;
+}
 /// <summary>
 /// Helps to find the idle time, (in milliseconds) spent since the last user input
 /// </summary>
@@ -161,13 +201,6 @@ public class IdleTimeFinder
     }
 }
 
-public static class Global
-{
-    public static uint MAX_IDLE = 0;
-    public static uint LAST_IDLE = 0;
-    public static bool IS_OFF = false;
-    public static bool IS_LOCKED = false;
-}
 public static class WindowsCmdCommand
 {
     public static void Run(string command, out string output, out string error, string directory = null)
