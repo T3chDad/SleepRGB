@@ -6,8 +6,8 @@ This seems to be a long standing issue and I'm impatient and OCD, so this is my 
 This app is essentially a proof of concept and should not be considered a production worthy release and likely has bugs. It was authored in VS2022 in C# under .NET Core 8.0. It functions as a GUI wrapper between the SignalRGB command line capability and detecting the different idle/lock states of the computer. When the program detects a lock or idle timeout, it uses the shell to tell SignalRGB to change to the desired "OFF" effect. When it detects a wake or unlock event, it tells SignalRGB to change to the desired "ON" effect...simple right?!
 
 For Example:  
---The default "OFF" effect is "Solid Color" with the settings of Black and 0 brightness.  
---The default "ON" effect is "Screen Ambience". 
+--The default sleep effect is "Solid Color" with the settings of Black and 0 brightness.  
+--The default wake effect is "Screen Ambience". 
 
 You can change the desired effects in the app settings (double-click tray/notification area icon). The effects you specify must already be installed and configured with SignalRGB itself. You need to ensure the effect names specified here must match the names in the SignalRGB interface. Spaces are supported.
 
