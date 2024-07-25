@@ -1,5 +1,5 @@
 # SignalRGB-Sleep
-Even though there are options in SignalRGB for turning off lighting when the computer/monitor sleeps or locks, it appears many (including me) cannot get this function to work whatsoever.
+Even though there are options in SignalRGB for turning off lighting when the computer/monitor sleeps or locks, it appears that many (including me) cannot get this function to work whatsoever.
 
 This seems to be a long standing issue and I'm impatient and OCD, so this is my attempt at a kludge to create more reliable sleep (lights-out) functionality via an open source windows utility. This is largely just an excersize to dust off my Google, Stack Overflow, and YouTube coding certifications. :D  I'm sharing this application in case anyone else would like to have this functionality to SignalRGB without too much trouble. No installation is needed. Just download the zip and extract it somewhere on your system that has SignalRGB installed and create a shortcut for the `"signalRGB-Sleep.exe"` in the `%userprofile%\Microsoft\Windows\Start Menu\Programs\Startup` folder so it loads when Windows starts.
 
