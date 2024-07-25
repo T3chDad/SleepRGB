@@ -135,10 +135,10 @@ namespace signalRGB_Sleep
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.avatar100x100;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(28, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.Size = new Size(100, 98);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
@@ -149,9 +149,9 @@ namespace signalRGB_Sleep
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(12, 115);
             label5.Name = "label5";
-            label5.Size = new Size(142, 23);
+            label5.Size = new Size(145, 23);
             label5.TabIndex = 9;
-            label5.Text = "signalRGB-Sleep";
+            label5.Text = "SignalRGB-Sleep";
             // 
             // label6
             // 
@@ -178,14 +178,14 @@ namespace signalRGB_Sleep
             Controls.Add(tb_OffEffect);
             Controls.Add(label2);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "signalRGB - Sleep";
+            Text = "SignalRGB - Sleep";
             WindowState = FormWindowState.Minimized;
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
