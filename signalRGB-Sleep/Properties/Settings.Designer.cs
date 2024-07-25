@@ -70,5 +70,17 @@ namespace signalRGB_Sleep.Properties {
                 this["Startup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool First_Run {
+            get {
+                return ((bool)(this["First_Run"]));
+            }
+            set {
+                this["First_Run"] = value;
+            }
+        }
     }
 }

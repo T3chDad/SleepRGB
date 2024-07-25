@@ -93,24 +93,29 @@ namespace signalRGB_Sleep
             Properties.Settings.Default.ON_Effect = tb_OnEffect.Text;
             Properties.Settings.Default.Timeout = int.Parse(tb_Timeout.Text);
             Properties.Settings.Default.Startup = cb_Startup.Checked;
+            Properties.Settings.Default.First_Run = false;
             Properties.Settings.Default.Save();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Send application directly to notification area icon once loaded
-            notifyIcon1.Visible = true;
-            this.Hide();
             // Read the application settings
             tb_OffEffect.Text = Properties.Settings.Default.OFF_Effect.ToString();
             tb_OnEffect.Text = Properties.Settings.Default.ON_Effect.ToString();
             tb_Timeout.Text = Properties.Settings.Default.Timeout.ToString();
             cb_Startup.Checked = Properties.Settings.Default.Startup;
+            bool RunCheck = Properties.Settings.Default.First_Run;
+            // Send application directly to notification area icon once loaded if this isn't the first time running
+            if(RunCheck)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+            }
         }
 
         private void bt_Quit_Click(object sender, EventArgs e)
         {
-            // User hit the "Exit" button on the window, REALLY exit the appliation now.
+            // User hit the "Quit" button on the window, REALLY exit the appliation now.
             Application.Exit();
         }
         static void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
@@ -151,7 +156,7 @@ namespace signalRGB_Sleep
                     WshShell shell = new WshShell();
                     IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Startup_Path);
                     shortcut.Description = "SignalRGB-Sleep";
-                    shortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + @"\SignalRGB-Sleep.exe";
+                    shortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + "SignalRGB-Sleep.exe";
                     shortcut.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     shortcut.Save();
                 }
