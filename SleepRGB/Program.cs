@@ -1,4 +1,4 @@
-namespace signalRGB_Sleep
+namespace SleepRGB
 {
     internal static class Program
     {

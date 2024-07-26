@@ -3,12 +3,12 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>signalRGB_Sleep</RootNamespace>
+    <RootNamespace>SleepRGB</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <ApplicationIcon>sleep.ico</ApplicationIcon>
+    <ApplicationIcon>LED_Sleep.ico</ApplicationIcon>
     <Title>signalRGB-Sleep</Title>
     <Company>T3chDad.com</Company>
     <Authors>T3chDad® - Bob Templeton</Authors>
@@ -27,6 +27,10 @@
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LED_Sleep.ico" />
   </ItemGroup>
 
   <ItemGroup>

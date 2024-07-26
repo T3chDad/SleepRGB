@@ -13,7 +13,7 @@ internal struct LASTINPUTINFO
     public uint dwTime;
 }
 
-namespace signalRGB_Sleep
+namespace SleepRGB
 {
     public partial class Form1 : Form
     {

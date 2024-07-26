@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace signalRGB_Sleep
+namespace SleepRGB
 {
     partial class Form1
     {
@@ -53,9 +53,10 @@ namespace signalRGB_Sleep
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(189, 15);
+            label1.Location = new Point(307, 24);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(91, 20);
+            label1.Size = new Size(145, 32);
             label1.TabIndex = 0;
             label1.Text = "Sleep Effect:";
             // 
@@ -68,9 +69,10 @@ namespace signalRGB_Sleep
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(189, 65);
+            label2.Location = new Point(307, 104);
+            label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(90, 20);
+            label2.Size = new Size(144, 32);
             label2.TabIndex = 1;
             label2.Text = "Wake Effect:";
             // 
@@ -85,42 +87,47 @@ namespace signalRGB_Sleep
             // 
             // tb_OffEffect
             // 
-            tb_OffEffect.Location = new Point(282, 12);
+            tb_OffEffect.Location = new Point(458, 19);
+            tb_OffEffect.Margin = new Padding(5, 5, 5, 5);
             tb_OffEffect.Name = "tb_OffEffect";
-            tb_OffEffect.Size = new Size(181, 27);
+            tb_OffEffect.Size = new Size(292, 39);
             tb_OffEffect.TabIndex = 2;
             tb_OffEffect.Text = "Solid Color";
             // 
             // tb_OnEffect
             // 
-            tb_OnEffect.Location = new Point(282, 62);
+            tb_OnEffect.Location = new Point(458, 99);
+            tb_OnEffect.Margin = new Padding(5, 5, 5, 5);
             tb_OnEffect.Name = "tb_OnEffect";
-            tb_OnEffect.Size = new Size(181, 27);
+            tb_OnEffect.Size = new Size(292, 39);
             tb_OnEffect.TabIndex = 3;
             tb_OnEffect.Text = "Screen Ambience";
             // 
             // tb_Timeout
             // 
-            tb_Timeout.Location = new Point(376, 112);
+            tb_Timeout.Location = new Point(611, 179);
+            tb_Timeout.Margin = new Padding(5, 5, 5, 5);
             tb_Timeout.Name = "tb_Timeout";
-            tb_Timeout.Size = new Size(87, 27);
+            tb_Timeout.Size = new Size(139, 39);
             tb_Timeout.TabIndex = 5;
             tb_Timeout.Text = "19";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(189, 115);
+            label3.Location = new Point(307, 184);
+            label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(181, 20);
+            label3.Size = new Size(295, 32);
             label3.TabIndex = 4;
             label3.Text = "Screen Timeout (Minutes):";
             // 
             // bt_Quit
             // 
-            bt_Quit.Location = new Point(189, 169);
+            bt_Quit.Location = new Point(307, 270);
+            bt_Quit.Margin = new Padding(5, 5, 5, 5);
             bt_Quit.Name = "bt_Quit";
-            bt_Quit.Size = new Size(124, 29);
+            bt_Quit.Size = new Size(202, 46);
             bt_Quit.TabIndex = 6;
             bt_Quit.Text = "Quit Program";
             bt_Quit.UseVisualStyleBackColor = true;
@@ -129,9 +136,10 @@ namespace signalRGB_Sleep
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(121, -11);
+            label4.Location = new Point(197, -18);
+            label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(50, 20);
+            label4.Size = new Size(78, 32);
             label4.TabIndex = 7;
             label4.Text = "label4";
             label4.Visible = false;
@@ -139,7 +147,8 @@ namespace signalRGB_Sleep
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(28, 12);
+            pictureBox1.Location = new Point(46, 19);
+            pictureBox1.Margin = new Padding(5, 5, 5, 5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 98);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -150,27 +159,30 @@ namespace signalRGB_Sleep
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(12, 115);
+            label5.Location = new Point(20, 184);
+            label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(145, 23);
+            label5.Size = new Size(236, 38);
             label5.TabIndex = 9;
             label5.Text = "SignalRGB-Sleep";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(66, 138);
+            label6.Location = new Point(107, 221);
+            label6.Margin = new Padding(5, 0, 5, 0);
             label6.Name = "label6";
-            label6.Size = new Size(35, 20);
+            label6.Size = new Size(57, 32);
             label6.TabIndex = 10;
             label6.Text = "v0.1";
             // 
             // cb_Startup
             // 
             cb_Startup.AutoSize = true;
-            cb_Startup.Location = new Point(12, 172);
+            cb_Startup.Location = new Point(20, 275);
+            cb_Startup.Margin = new Padding(5, 5, 5, 5);
             cb_Startup.Name = "cb_Startup";
-            cb_Startup.Size = new Size(159, 24);
+            cb_Startup.Size = new Size(250, 36);
             cb_Startup.TabIndex = 11;
             cb_Startup.Text = "Start with Windows";
             cb_Startup.UseVisualStyleBackColor = true;
@@ -178,9 +190,10 @@ namespace signalRGB_Sleep
             // 
             // bt_Minimize
             // 
-            bt_Minimize.Location = new Point(319, 169);
+            bt_Minimize.Location = new Point(518, 270);
+            bt_Minimize.Margin = new Padding(5, 5, 5, 5);
             bt_Minimize.Name = "bt_Minimize";
-            bt_Minimize.Size = new Size(144, 29);
+            bt_Minimize.Size = new Size(234, 46);
             bt_Minimize.TabIndex = 12;
             bt_Minimize.Text = "Minimize to Tray";
             bt_Minimize.UseVisualStyleBackColor = true;
@@ -188,9 +201,9 @@ namespace signalRGB_Sleep
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(476, 212);
+            ClientSize = new Size(774, 339);
             ControlBox = false;
             Controls.Add(bt_Minimize);
             Controls.Add(cb_Startup);
@@ -207,6 +220,7 @@ namespace signalRGB_Sleep
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(5, 5, 5, 5);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
