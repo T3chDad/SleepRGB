@@ -3,7 +3,7 @@ Even though there are options in SignalRGB for turning off lighting when the com
 
 This seems to be a long standing issue and I'm impatient and OCD, so this is my attempt at a kludge to create more reliable sleep (lights-out) functionality via an open source windows utility. This is largely just an excersize to dust off my Google, Stack Overflow, and YouTube coding certifications. :D  I'm sharing this application in case anyone else would like to have this functionality to SignalRGB without too much trouble. 
 
-![signalRGB-Sleep_jVM1ddahcj](https://github.com/user-attachments/assets/6e270cb2-40b1-4c1a-8cf5-c27f602e8de3) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ![KF6VRTBxre](https://github.com/user-attachments/assets/c643699e-70a5-466a-88af-880f48a8fd50)
+![SleepRGB_JrY6kj1Izc](https://github.com/user-attachments/assets/8f298d80-720e-4c8a-9d9b-0b4529f45eca) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; ![KF6VRTBxre](https://github.com/user-attachments/assets/c643699e-70a5-466a-88af-880f48a8fd50)
 
 This app is essentially a proof of concept and should not be considered a production worthy release and likely has bugs. It was authored in VS2022 in C# under .NET Core 8.0. It functions as a GUI wrapper between the SignalRGB command line capability and detecting the different idle/lock states of the computer. When the program detects a lock or idle timeout, it uses the shell to tell SignalRGB to change to the desired sleep effect. When it detects a wake or unlock event, it tells SignalRGB to change to the desired wake effect...simple right?!
 
