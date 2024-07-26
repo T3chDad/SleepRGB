@@ -7,12 +7,6 @@ using Microsoft.Win32;
 using BlueMystic;
 using IWshRuntimeLibrary;
 
-internal struct LASTINPUTINFO
-{
-    public uint cbSize;
-    public uint dwTime;
-}
-
 namespace SleepRGB
 {
     public partial class Form1 : Form
@@ -20,10 +14,12 @@ namespace SleepRGB
         public Form1()
         {
             InitializeComponent();
-            _ = new DarkModeCS(this);  // Dark mode theming
-            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;  // Subscribe to the SessionSwitch event
+            // Dark mode theming
+            _ = new DarkModeCS(this);
+            // Subscribe to the SessionSwitch event
+            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;  
         }
-
+        // Timer tick event (every 1000ms)
         private void timer1_Tick(object sender, EventArgs e)
         {
             // Convert the timout to a uint
@@ -62,9 +58,9 @@ namespace SleepRGB
             label4.Text = "Idle seconds: " + IdleTime.ToString();
         }
 
+        // Close application window to notification area icon
         private void Form1_Resize(object sender, EventArgs e)
         {
-            // Close application window to notification area icon
             if (FormWindowState.Minimized == this.WindowState)
             {
                 notifyIcon1.Visible = true;
@@ -72,24 +68,17 @@ namespace SleepRGB
             }
         }
 
+        // dbl-click on notification icon, show the application window
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
-            // dbl-click on notification icon, show the application window
             this.ShowInTaskbar = true;
             this.WindowState = FormWindowState.Normal;
             this.Show();
         }
 
+        // Window closing...save the settings
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // If the user hit the titlebar "X", minimize to notification icon
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                notifyIcon1.Visible = true;
-                this.ShowInTaskbar = false;
-                this.Hide();
-                e.Cancel = true;
-            }
             // Save the application settings
             Properties.Settings.Default.OFF_Effect = tb_OffEffect.Text;
             Properties.Settings.Default.ON_Effect = tb_OnEffect.Text;
@@ -98,7 +87,7 @@ namespace SleepRGB
             Properties.Settings.Default.First_Run = false;
             Properties.Settings.Default.Save();
         }
-
+        // Window Loading...load settings, etc.
         private void Form1_Load(object sender, EventArgs e)
         {
             // Read the application settings
@@ -107,7 +96,7 @@ namespace SleepRGB
             tb_Timeout.Text = Properties.Settings.Default.Timeout.ToString();
             cb_Startup.Checked = Properties.Settings.Default.Startup;
             bool RunCheck = Properties.Settings.Default.First_Run;
-            // Send application directly to notification area icon once loaded if this isn't the first time running
+            // Show the application window if this is the first run.
             if(RunCheck)
             {
                 this.ShowInTaskbar = true;
@@ -115,12 +104,12 @@ namespace SleepRGB
                 this.Show();
             }
         }
-
+        // User hit the "Quit" button on the window exit the appliation.
         private void bt_Quit_Click(object sender, EventArgs e)
         {
-            // User hit the "Quit" button on the window, REALLY exit the appliation now.
             Application.Exit();
         }
+        // Session state changed....how did it change?
         static void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
         {
             if (e.Reason == SessionSwitchReason.SessionLock)
@@ -132,13 +121,13 @@ namespace SleepRGB
                 Global.IS_LOCKED = false;
             }
         }
-
+        // Minimize button clicked send the app to the tray
         private void bt_Minimize_Click(object sender, EventArgs e)
         {
             notifyIcon1.Visible = true;
             this.Hide();
         }
-
+        // Startup option handler...
         private void cb_Startup_CheckedChanged(object sender, EventArgs e)
         {
             string Shortcut_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SleepRGB.lnk";
@@ -155,9 +144,8 @@ namespace SleepRGB
             {
                 if (!System.IO.File.Exists(Shortcut_Path))
                 {
-                    string Startup_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SleepRGB.lnk";
                     WshShell shell = new WshShell();
-                    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Startup_Path);
+                    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Shortcut_Path);
                     shortcut.Description = "SleepRGB";
                     shortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + "SleepRGB.exe";
                     shortcut.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -165,6 +153,7 @@ namespace SleepRGB
                 }
             }
         }
+
     }
 }
 public static class Global
@@ -177,6 +166,12 @@ public static class Global
 /// <summary>
 /// Helps to find the idle time, (in milliseconds) spent since the last user input
 /// </summary>
+/// 
+internal struct LASTINPUTINFO
+{
+    public uint cbSize;
+    public uint dwTime;
+}
 public class IdleTimeFinder
 {
     [DllImport("User32.dll")]
