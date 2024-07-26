@@ -138,7 +138,7 @@ namespace SleepRGB
 
         private void cb_Startup_CheckedChanged(object sender, EventArgs e)
         {
-            string Shortcut_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SignalRGB-Sleep.lnk";
+            string Shortcut_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SleepRGB.lnk";
             // if not checked, remove the startup shortcut
             if (!cb_Startup.Checked)
             {
@@ -152,11 +152,11 @@ namespace SleepRGB
             {
                 if (!System.IO.File.Exists(Shortcut_Path))
                 {
-                    string Startup_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SignalRGB-Sleep.lnk";
+                    string Startup_Path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\SleepRGB.lnk";
                     WshShell shell = new WshShell();
                     IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Startup_Path);
-                    shortcut.Description = "SignalRGB-Sleep";
-                    shortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + "SignalRGB-Sleep.exe";
+                    shortcut.Description = "SleepRGB";
+                    shortcut.TargetPath = AppDomain.CurrentDomain.BaseDirectory + "SleepRGB.exe";
                     shortcut.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
                     shortcut.Save();
                 }

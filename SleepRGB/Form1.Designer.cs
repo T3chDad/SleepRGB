@@ -81,14 +81,14 @@ namespace SleepRGB
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon1.BalloonTipText = "Minimized";
             notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
-            notifyIcon1.Text = "signalRGB - Sleep";
+            notifyIcon1.Text = "SleepRGB";
             notifyIcon1.Visible = true;
             notifyIcon1.DoubleClick += notifyIcon1_DoubleClick;
             // 
             // tb_OffEffect
             // 
             tb_OffEffect.Location = new Point(458, 19);
-            tb_OffEffect.Margin = new Padding(5, 5, 5, 5);
+            tb_OffEffect.Margin = new Padding(5);
             tb_OffEffect.Name = "tb_OffEffect";
             tb_OffEffect.Size = new Size(292, 39);
             tb_OffEffect.TabIndex = 2;
@@ -97,7 +97,7 @@ namespace SleepRGB
             // tb_OnEffect
             // 
             tb_OnEffect.Location = new Point(458, 99);
-            tb_OnEffect.Margin = new Padding(5, 5, 5, 5);
+            tb_OnEffect.Margin = new Padding(5);
             tb_OnEffect.Name = "tb_OnEffect";
             tb_OnEffect.Size = new Size(292, 39);
             tb_OnEffect.TabIndex = 3;
@@ -106,7 +106,7 @@ namespace SleepRGB
             // tb_Timeout
             // 
             tb_Timeout.Location = new Point(611, 179);
-            tb_Timeout.Margin = new Padding(5, 5, 5, 5);
+            tb_Timeout.Margin = new Padding(5);
             tb_Timeout.Name = "tb_Timeout";
             tb_Timeout.Size = new Size(139, 39);
             tb_Timeout.TabIndex = 5;
@@ -125,7 +125,7 @@ namespace SleepRGB
             // bt_Quit
             // 
             bt_Quit.Location = new Point(307, 270);
-            bt_Quit.Margin = new Padding(5, 5, 5, 5);
+            bt_Quit.Margin = new Padding(5);
             bt_Quit.Name = "bt_Quit";
             bt_Quit.Size = new Size(202, 46);
             bt_Quit.TabIndex = 6;
@@ -148,7 +148,7 @@ namespace SleepRGB
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(46, 19);
-            pictureBox1.Margin = new Padding(5, 5, 5, 5);
+            pictureBox1.Margin = new Padding(5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 98);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -162,9 +162,9 @@ namespace SleepRGB
             label5.Location = new Point(20, 184);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(236, 38);
+            label5.Size = new Size(144, 38);
             label5.TabIndex = 9;
-            label5.Text = "SignalRGB-Sleep";
+            label5.Text = "SleepRGB";
             // 
             // label6
             // 
@@ -180,7 +180,7 @@ namespace SleepRGB
             // 
             cb_Startup.AutoSize = true;
             cb_Startup.Location = new Point(20, 275);
-            cb_Startup.Margin = new Padding(5, 5, 5, 5);
+            cb_Startup.Margin = new Padding(5);
             cb_Startup.Name = "cb_Startup";
             cb_Startup.Size = new Size(250, 36);
             cb_Startup.TabIndex = 11;
@@ -191,7 +191,7 @@ namespace SleepRGB
             // bt_Minimize
             // 
             bt_Minimize.Location = new Point(518, 270);
-            bt_Minimize.Margin = new Padding(5, 5, 5, 5);
+            bt_Minimize.Margin = new Padding(5);
             bt_Minimize.Name = "bt_Minimize";
             bt_Minimize.Size = new Size(234, 46);
             bt_Minimize.TabIndex = 12;
@@ -220,13 +220,13 @@ namespace SleepRGB
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "SignalRGB - Sleep";
+            Text = "SleepRGB";
             WindowState = FormWindowState.Minimized;
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
