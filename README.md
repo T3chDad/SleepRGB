@@ -11,7 +11,7 @@ For Example:
 --The default sleep effect is "Solid Color" with the settings of Black and 0 brightness.  
 --The default wake effect is "Screen Ambience". 
 
-You can change the desired effects in the app settings (double-click tray/notification area icon). The effects you specify must already be installed and configured with SignalRGB itself. You need to ensure the effect names specified here must match the names in the SignalRGB interface. Spaces are supported.
+You can change the desired effects in the app settings (double-click tray/notification area icon). The effects you specify must already be installed and configured with SignalRGB itself. You need to ensure the effect names specified here match the names in the SignalRGB interface. Spaces are supported.
 ************************************************************************************************
 **Installation:** <br />
 No installation is needed. Just download the zip from [releases](https://github.com/T3chDad/SignalRGB-Sleep/releases) and extract it somewhere on your system and then run **`SleepRGB.exe`**.  When you run the program for the first time, the settings window will open with default settings.  On subsequent runs, the application will go strait to the tray/notification area.  Double-click this icon to open the settings.&emsp;_***Please note** - SignalRGB must already be installed and functioning on the system. The [command line functionality](https://docs.signalrgb.com/application-url-s/using-command-line) in SignalRGB must be working as well before attempting to use this utility._
