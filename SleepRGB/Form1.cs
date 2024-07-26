@@ -75,8 +75,9 @@ namespace SleepRGB
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
             // dbl-click on notification icon, show the application window
-            this.Show();
+            this.ShowInTaskbar = true;
             this.WindowState = FormWindowState.Normal;
+            this.Show();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -85,6 +86,7 @@ namespace SleepRGB
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 notifyIcon1.Visible = true;
+                this.ShowInTaskbar = false;
                 this.Hide();
                 e.Cancel = true;
             }
@@ -108,8 +110,9 @@ namespace SleepRGB
             // Send application directly to notification area icon once loaded if this isn't the first time running
             if(RunCheck)
             {
-                this.Show();
+                this.ShowInTaskbar = true;
                 this.WindowState = FormWindowState.Normal;
+                this.Show();
             }
         }
 
